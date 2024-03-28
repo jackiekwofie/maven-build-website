@@ -11,5 +11,15 @@ pipeline {
                 git 'https://github.com/jackiekwofie/maven-build-website.git'
             }
         }
+        stage ("Build with maven") {
+            steps {
+                sh'''
+                mvn clean
+                mvn test
+                mvn package
+                '''
+
+            }
+        }
     }
 }
