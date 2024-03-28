@@ -21,7 +21,7 @@ pipeline {
 
             }
         }
-          stage('SonarQube Analysis') {
+        stage('SonarQube Analysis') {
             environment {
                 ScannerHome = tool 'sonar5.0'
             }
@@ -31,6 +31,11 @@ pipeline {
                         sh "${ScannerHome}/bin/sonar-scanner -Dsonar.projectKey=jomacs"
                     }
                 }
+            }
+        }
+        stage ("upload to nexus") {
+            steps {
+               nexusArtifactUploader credentialsId: 'nexus-id', groupId: 'com.devops.maven', nexusUrl: '13.60.56.14:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'webapp-snapshot', version: '1.0-SNAPSHOT' 
             }
         }
     }
