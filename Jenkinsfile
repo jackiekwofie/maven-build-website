@@ -22,7 +22,7 @@ pipeline {
         }
         stage ("Sonarqube analysis") {
             steps {
-                 withSonarQubeEnv('My SonarQube Server') {
+                 withSonarQubeEnv('Sonarqube') {
                     sh 'mvn sonar:sonar'
                  }
             }
