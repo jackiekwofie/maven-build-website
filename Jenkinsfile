@@ -30,7 +30,7 @@ pipeline {
         stage ("Sonarqube Analysis") {
             steps {
                 script {
-                    withSonarQubeEnv(credentialsId: 'sonarway') {  
+                    withSonarQubeEnv(credentialsId: 'sonar-sonar') {  
                     sh "${scannerhome}/bin/sonar-scanner -Dsonar.projectKey=earthapp"
                     }
                 }
